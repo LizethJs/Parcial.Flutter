@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'dart:math';
 
 void main() {
   runApp(MyApp());
@@ -27,9 +27,21 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = 'Tacos';
+  final List<String> items = [
+    'Tacos',
+    'Burritos',
+    'Quesadillas',
+    'Enchiladas',
+    'Tamales',
+    'Sopes',
+    'Gorditas',
+    'Pozole',
+    'Chiles en Nogada',
+  ];
+
   void getNext() {
-    var items = ['Tacos', 'Burritos', 'Quesadillas', 'Enchiladas', 'Tamales'];
-    current = items[(items.indexOf(current) + 1) % items.length];  
+    var random = Random();
+    current = items[random.nextInt(items.length)];
     notifyListeners();
   }
 
