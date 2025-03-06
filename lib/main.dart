@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -27,22 +26,29 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  var current = 'Tacos';
-  final List<String> items = [
-    'Tacos',
-    'Burritos',
-    'Quesadillas',
-    'Enchiladas',
-    'Tamales',
-    'Sopes',
-    'Gorditas',
-    'Pozole',
-    'Chiles en Nogada',
+  var current = '';
+  final Random random = Random();
+
+  // Lista de palabras coherentes en español
+  final List<String> words = [
+    'sol', 'luna', 'estrella', 'cielo', 'flor', 'nube', 'montaña', 'río', 'mar', 'viento', 
+    'piedra', 'árbol', 'hoja', 'flama', 'luz', 'agua', 'fuego', 'camino', 'tierra', 'viento',
+    'libertad', 'paz', 'amistad', 'familia', 'alegría', 'esperanza', 'cultura', 'cariño',
+    'valentía', 'sabiduría', 'compasión', 'honestidad', 'gracia', 'armonía', 'fuerza',
+    'sabores', 'recuerdos', 'sueños', 'aventura', 'felicidad'
   ];
 
+  MyAppState() {
+    current = _generateRandomWord();
+  }
+
+  // Generador de palabra aleatoria de la lista
+  String _generateRandomWord() {
+    return words[random.nextInt(words.length)];
+  }
+
   void getNext() {
-    var random = Random();
-    current = items[random.nextInt(items.length)];
+    current = _generateRandomWord();
     notifyListeners();
   }
 
