@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 void main() {
   runApp(MyApp());
 }
@@ -25,16 +26,14 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  // Lista de comida mexicana
   var current = 'Tacos';
-
   void getNext() {
     var items = ['Tacos', 'Burritos', 'Quesadillas', 'Enchiladas', 'Tamales'];
     current = items[(items.indexOf(current) + 1) % items.length];  
     notifyListeners();
   }
 
-  var favorites = <String>[];  // Cambiado a String, ya que los items son ahora texto
+  var favorites = <String>[];  
 
   void toggleFavorite() {
     if (favorites.contains(current)) {
@@ -133,14 +132,14 @@ class GeneratorPage extends StatelessWidget {
                   appState.toggleFavorite();
                 },
                 icon: Icon(icon),
-                label: Text('Me encanta'), // Texto en español
+                label: Text('Me encanta'), 
               ),
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
                   appState.getNext();
                 },
-                child: Text('Siguiente'), // Texto en español
+                child: Text('Siguiente'), 
               ),
             ],
           ),
@@ -168,6 +167,7 @@ class FavoritesPage extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Text('Tienes ${appState.favorites.length} favoritos:'), 
         ),
+        
         for (var item in appState.favorites)
           ListTile(
             leading: Icon(Icons.favorite),
